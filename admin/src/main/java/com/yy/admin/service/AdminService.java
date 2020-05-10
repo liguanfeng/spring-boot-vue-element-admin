@@ -6,14 +6,17 @@ import com.yy.admin.dao.AdminMapper;
 import com.yy.admin.entity.Admin;
 import com.yy.admin.vo.AdminVo;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
+import javax.annotation.Resource;
 import java.util.UUID;
 
 @Service
 public class AdminService {
 
+    @Resource
     private AdminMapper adminMapper;
 
 
