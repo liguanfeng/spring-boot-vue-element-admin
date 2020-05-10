@@ -29,6 +29,10 @@
         <qiniu.version>[7.2.0, 7.2.99]</qiniu.version>
     </properties>
 
+    <modules>
+        <module>admin</module>
+    </modules>
+
     <dependencies>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
