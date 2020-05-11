@@ -10,7 +10,9 @@ const service = axios.create({
   // withCredentials: true, // send cookies when cross-domain requests
   timeout: 5000, // request timeout
   transformRequest: [function (data , headers) {
+    //获取内容请求类型
     let contentType = headers['Content-Type']
+    //body 转换
     if( contentType && contentType.toUpperCase().includes('JSON')){
         return JSON.stringify(data);
     }
