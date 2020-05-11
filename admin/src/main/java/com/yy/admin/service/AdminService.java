@@ -28,6 +28,8 @@ public class AdminService {
      * @return
      */
     public Admin login(String name, String password) {
+        Assert.hasText(name, "账号不能为空");
+        Assert.hasText(password, "密码不能为空");
         Admin admin = adminMapper.selectOne(new QueryWrapper<Admin>().eq("name", name)
                 .eq("password", SecureUtil.md5(password)));
         Assert.notNull(admin, "账号或密码错误");
@@ -35,6 +37,6 @@ public class AdminService {
         BeanUtils.copyProperties(admin, adminVo);
         String token = UUID.randomUUID().toString().replace("-", "");
         adminVo.setToken(token);
-        return admin;
+        return adminVo;
     }
 }

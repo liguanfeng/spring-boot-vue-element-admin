@@ -18,3 +18,6 @@ CREATE TABLE `menu` (
   `type` int DEFAULT '0' COMMENT '菜单类型: 0-大后台',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin COMMENT='菜单表';
+
+INSERT INTO `admin`(`id`, `name`, `password`, `createTime`) VALUES (1, 'admin', '21232f297a57a5a743894a0e4a801fc3', '2020-05-09 15:27:58');
+

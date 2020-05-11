@@ -2,19 +2,27 @@ import axios from 'axios'
 import { MessageBox, Message } from 'element-ui'
 import store from '@/store'
 import { getToken } from '@/utils/auth'
+import { param } from '@/utils/index'
 
 // create an axios instance
 const service = axios.create({
   baseURL: process.env.VUE_APP_BASE_API, // url = base url + request url
   // withCredentials: true, // send cookies when cross-domain requests
-  timeout: 5000 // request timeout
+  timeout: 5000, // request timeout
+  transformRequest: [function (data) {
+    // 将数据转换为表单数据
+    return param(data)
+  }],
+  headers: {
+    'Content-Type': 'application/x-www-form-urlencoded'
+  }
 })
 
 // request interceptor
 service.interceptors.request.use(
   config => {
     // do something before request is sent
-
+    // config.headers['Content-Type'] = 'application/x-www-form-urlencoded'
     if (store.getters.token) {
       // let each request carry token
       // ['X-Token'] is a custom headers key
@@ -44,21 +52,21 @@ service.interceptors.response.use(
    */
   response => {
     const res = response.data
-
+    // debugger
     // if the custom code is not 20000, it is judged as an error.
-    if (res.code !== 20000) {
+    if (res.code !== 200) {
       Message({
-        message: res.message || 'Error',
+        message: res.message || '请求接口异常',
         type: 'error',
         duration: 5 * 1000
       })
 
       // 50008: Illegal token; 50012: Other clients logged in; 50014: Token expired;
-      if (res.code === 50008 || res.code === 50012 || res.code === 50014) {
+      if (res.code ===  401 ) {
         // to re-login
-        MessageBox.confirm('You have been logged out, you can cancel to stay on this page, or log in again', 'Confirm logout', {
-          confirmButtonText: 'Re-Login',
-          cancelButtonText: 'Cancel',
+        MessageBox.confirm('登录已过期，请重新登录', '退出登录', {
+          confirmButtonText: '重新登录',
+          cancelButtonText: '取消',
           type: 'warning'
         }).then(() => {
           store.dispatch('user/resetToken').then(() => {
@@ -66,15 +74,19 @@ service.interceptors.response.use(
           })
         })
       }
-      return Promise.reject(new Error(res.message || 'Error'))
+      return Promise.reject(new Error(res.message || '请求接口异常'))
     } else {
       return res
     }
   },
   error => {
-    console.log('err' + error) // for debug
+    // debugger
+    // let status = error.response.status;
+    let data = error.response.data;
+    console.log(error) // for debug
+    // console.log('err' + error) // for debug
     Message({
-      message: error.message,
+      message: data.message,
       type: 'error',
       duration: 5 * 1000
     })
