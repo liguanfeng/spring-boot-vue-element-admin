@@ -1,10 +1,13 @@
 package com.yy.admin.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
+import java.util.List;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -55,6 +58,10 @@ public class Menu extends Model<Menu> {
 
     @ApiModelProperty(value = "菜单类型: 0-大后台")
     private Integer type;
+
+    @ApiModelProperty(value = "子菜单")
+    @TableField(exist = false)
+    List<Menu> children;
 
 
     @Override

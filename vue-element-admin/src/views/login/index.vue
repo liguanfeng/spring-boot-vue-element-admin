@@ -102,8 +102,8 @@ export default {
         password: 'admin'
       },
       loginRules: {
-        username: [{ required: true, trigger: 'blur', validator: validateUsername }],
-        password: [{ required: true, trigger: 'blur', validator: validatePassword }]
+        username: [{ required: true, trigger: 'blur',  }],
+        password: [{ required: true, trigger: 'blur', }]
       },
       passwordType: 'password',
       capsTooltip: false,

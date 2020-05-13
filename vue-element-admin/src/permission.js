@@ -5,7 +5,6 @@ import NProgress from 'nprogress' // progress bar
 import 'nprogress/nprogress.css' // progress bar style
 import { getToken } from '@/utils/auth' // get token from cookie
 import getPageTitle from '@/utils/get-page-title'
-import { resetRouter,constantRoutes } from '@/router'
 
 NProgress.configure({ showSpinner: false }) // NProgress Configuration
 
@@ -39,11 +38,9 @@ router.beforeEach(async(to, from, next) => {
 
           // generate accessible routes map based on roles
           const accessRoutes = await store.dispatch('permission/generateRoutes', {})
-          // debugger
+
           // dynamically add accessible routes
           router.addRoutes(accessRoutes)
-          // debugger
-          // resetRouter()
 
           // hack method to ensure that addRoutes is complete
           // set the replace: true, so the navigation will not leave a history record
