@@ -35,8 +35,11 @@ public class Menu extends Model<Menu> {
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
-    @ApiModelProperty(value = "菜单名称")
+    @ApiModelProperty(value = "菜单路由名称")
     private String name;
+
+    @ApiModelProperty(value = "菜单名称")
+    private String title;
 
     @ApiModelProperty(value = "路径")
     private String path;

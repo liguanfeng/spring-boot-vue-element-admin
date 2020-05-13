@@ -21,3 +21,8 @@ CREATE TABLE `menu` (
 
 INSERT INTO `admin`(`id`, `name`, `password`, `createTime`) VALUES (1, 'admin', '21232f297a57a5a743894a0e4a801fc3', '2020-05-09 15:27:58');
 
+ALTER TABLE `menu`
+    MODIFY COLUMN `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL COMMENT '菜单路由名称' AFTER `id`,
+    ADD COLUMN `title` varchar(32) COMMENT '菜单名称' AFTER `name`,
+    MODIFY COLUMN `parentId` int(0) DEFAULT NULL COMMENT '父级id' AFTER `redirect`;
+
