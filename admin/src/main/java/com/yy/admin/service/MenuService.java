@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.yy.admin.dao.MenuMapper;
 import com.yy.admin.entity.Menu;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 
 import javax.annotation.Resource;
 import java.util.Arrays;
@@ -98,5 +99,22 @@ public class MenuService {
             pidList = children.stream().map(Menu::getId).collect(Collectors.toList());
             menuMapper.delete(new UpdateWrapper<Menu>().in("id", pidList));
         }
+    }
+
+    public void save(Menu menu) {
+        Assert.hasText(menu.getTitle(), "菜单名称不能为空");
+        Assert.hasText(menu.getPath(), "菜单路径不能为空");
+        if (menu.getId() == null) {
+            menu.insert();
+        } else {
+            if (menu.getId().equals(menu.getParentId())) {
+                menu.setParentId(null);
+            }
+            menu.update(new UpdateWrapper<Menu>()
+                    .set("parentId", menu.getParentId())
+                    .eq("id", menu.getId())
+            );
+        }
+
     }
 }

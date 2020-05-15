@@ -1,5 +1,6 @@
 package com.yy.admin.controller;
 
+import com.yy.admin.entity.Menu;
 import com.yy.admin.service.MenuService;
 import com.yy.admin.vo.Result;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,12 @@ public class MenuController {
     @RequestMapping("/delete")
     public Result delete(Integer id) {
         menuService.delete(id);
+        return new Result();
+    }
+
+    @RequestMapping("/save")
+    public Result save(Menu menu) {
+        menuService.save(menu);
         return new Result();
     }
 
