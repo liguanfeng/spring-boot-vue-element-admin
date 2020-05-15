@@ -23,6 +23,12 @@ public class MenuController {
         return new Result(menuService.getList(title));
     }
 
+    @RequestMapping("/delete")
+    public Result delete(Integer id) {
+        menuService.delete(id);
+        return new Result();
+    }
+
 
 
 

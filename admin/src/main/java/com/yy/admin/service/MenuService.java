@@ -1,11 +1,13 @@
 package com.yy.admin.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.yy.admin.dao.MenuMapper;
 import com.yy.admin.entity.Menu;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -35,10 +37,10 @@ public class MenuService {
     public List<Menu> getList(String title) {
         List<Menu> menus = menuMapper.selectList(new QueryWrapper<>());
         List<Menu> matchList = menus.stream().filter(menu ->
-                isMatchTitle(menu.getTitle(),title) ||
-                        isMatchTitle(menu.getComponent(),title) ||
-                        isMatchTitle(menu.getName(),title) ||
-                        isMatchTitle(menu.getPath(),title)
+                isMatchTitle(menu.getTitle(), title) ||
+                        isMatchTitle(menu.getComponent(), title) ||
+                        isMatchTitle(menu.getName(), title) ||
+                        isMatchTitle(menu.getPath(), title)
         )
                 .collect(Collectors.toList());
         List<Integer> ids = matchList.stream().map(Menu::getId).collect(Collectors.toList());
@@ -85,4 +87,16 @@ public class MenuService {
     }
 
 
+    public void delete(Integer id) {
+        menuMapper.deleteById(id);
+        List<Integer> pidList = Arrays.asList(id);
+        while (true) {
+            List<Menu> children = menuMapper.selectList(new QueryWrapper<Menu>().in("parentId", pidList));
+            if (children.isEmpty()) {
+                break;
+            }
+            pidList = children.stream().map(Menu::getId).collect(Collectors.toList());
+            menuMapper.delete(new UpdateWrapper<Menu>().in("id", pidList));
+        }
+    }
 }
