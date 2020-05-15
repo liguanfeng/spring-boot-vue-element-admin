@@ -18,7 +18,7 @@ class AdminApplicationTests {
 
     @Test
     void contextLoads() {
-        List<Menu> list = menuService.getList();
+        List<Menu> list = menuService.getList(null);
         System.out.println(JSON.toJSONString(list,true));
     }
 

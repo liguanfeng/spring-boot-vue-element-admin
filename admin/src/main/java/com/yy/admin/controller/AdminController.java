@@ -45,7 +45,7 @@ public class AdminController {
      */
     @RequestMapping("/menus")
     public Result menus() {
-        return new Result(menuService.getList());
+        return new Result(menuService.getAdminMenuList());
     }
 
 }

@@ -19,8 +19,8 @@ public class MenuController {
      * @return
      */
     @RequestMapping("/list")
-    public Result list() {
-        return new Result(menuService.getList());
+    public Result list(String title) {
+        return new Result(menuService.getList(title));
     }
 
 
