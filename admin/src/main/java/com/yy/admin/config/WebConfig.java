@@ -62,27 +62,7 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addArgumentResolvers(List<HandlerMethodArgumentResolver> resolvers) {
-        resolvers.add(new HandlerMethodArgumentResolver() {
-            @Override
-            public boolean supportsParameter(MethodParameter parameter) {
-                return parameter.getParameterType().equals(Page.class);
-            }
 
-            @Override
-            public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer container,
-                                          NativeWebRequest request, WebDataBinderFactory factory) throws Exception {
-                Page<Object> page = new Page<>();
-                String current = request.getParameter("page");
-                String size = request.getParameter("limit");
-                if (StringUtils.isNotBlank(current)) {
-                    page.setCurrent(Long.parseLong(current));
-                }
-                if (StringUtils.isNotBlank(size)) {
-                    page.setSize(Long.parseLong(size));
-                }
-                return page;
-            }
-        });
     }
 
     @Override
