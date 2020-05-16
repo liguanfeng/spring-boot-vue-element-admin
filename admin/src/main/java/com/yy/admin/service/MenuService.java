@@ -6,6 +6,7 @@ import com.yy.admin.dao.MenuMapper;
 import com.yy.admin.entity.Menu;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
+import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
 import java.util.Arrays;
@@ -37,18 +38,22 @@ public class MenuService {
      */
     public List<Menu> getList(String title) {
         List<Menu> menus = menuMapper.selectList(new QueryWrapper<>());
-        List<Menu> matchList = menus.stream().filter(menu ->
-                isMatchTitle(menu.getTitle(), title) ||
-                        isMatchTitle(menu.getComponent(), title) ||
-                        isMatchTitle(menu.getName(), title) ||
-                        isMatchTitle(menu.getPath(), title)
-        )
-                .collect(Collectors.toList());
-        List<Integer> ids = matchList.stream().map(Menu::getId).collect(Collectors.toList());
-        HashSet<Integer> matchIds = new HashSet<>();
-        matchIds.addAll(ids);
-        getParentIds(menus, ids, matchIds);
-        return getChildren(null, menus.stream().filter(item -> matchIds.contains(item.getId())).collect(Collectors.toList()));
+        if (!StringUtils.isEmpty(title)) {
+            List<Menu> matchList = menus.stream().filter(menu ->
+                    isMatchTitle(menu.getTitle(), title) ||
+                            isMatchTitle(menu.getComponent(), title) ||
+                            isMatchTitle(menu.getName(), title) ||
+                            isMatchTitle(menu.getPath(), title)
+            )
+                    .collect(Collectors.toList());
+            List<Integer> ids = matchList.stream().map(Menu::getId).collect(Collectors.toList());
+            HashSet<Integer> matchIds = new HashSet<>();
+            matchIds.addAll(ids);
+            getParentIds(menus, ids, matchIds);
+            menus = menus.stream().filter(item -> matchIds.contains(item.getId())).collect(Collectors.toList());
+        }
+
+        return getChildren(null, menus);
     }
 
 
@@ -88,6 +93,11 @@ public class MenuService {
     }
 
 
+    /**
+     * 删除菜单
+     *
+     * @param id
+     */
     public void delete(Integer id) {
         menuMapper.deleteById(id);
         List<Integer> pidList = Arrays.asList(id);
@@ -101,9 +111,19 @@ public class MenuService {
         }
     }
 
+    /**
+     * 新增或修改菜单
+     *
+     * @param menu
+     */
     public void save(Menu menu) {
         Assert.hasText(menu.getTitle(), "菜单名称不能为空");
         Assert.hasText(menu.getPath(), "菜单路径不能为空");
+        Assert.notNull(menu.getApi(), "请选择创建菜单或权限");
+        menu.setHidden(menu.getHidden() == null ? false : menu.getHidden());
+        if (menu.getApi()) {
+            Assert.notNull(menu.getParentId(), "权限必须选择上级菜单");
+        }
         if (menu.getId() == null) {
             menu.insert();
         } else {

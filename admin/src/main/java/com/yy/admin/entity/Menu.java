@@ -56,6 +56,9 @@ public class Menu extends Model<Menu> {
     @ApiModelProperty(value = "是否隐藏: 0-不隐藏 1-隐藏")
     private Boolean hidden;
 
+    @ApiModelProperty(value = "API接口类型：0-否 1-是")
+    private Boolean api;
+
     @ApiModelProperty(value = "重定向地址")
     private String redirect;
 

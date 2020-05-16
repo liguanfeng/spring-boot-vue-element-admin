@@ -35,7 +35,7 @@ public class SpringBootGenerateApplicationTests {
         //项目路径
         String projectPath = System.getProperty("user.dir");
         //要生成的表名
-        String[] tables = {"menu","admin"};
+        String[] tables = {"role"};
         //table前缀
         String tablePrefix = "";
         String basePackage = "com.yy.admin";

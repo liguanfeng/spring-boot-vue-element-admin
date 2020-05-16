@@ -111,9 +111,9 @@ public class WebConfig implements WebMvcConfigurer {
                 SerializerFeature.WriteDateUseDateFormat,
                 SerializerFeature.DisableCircularReferenceDetect);
         SerializeConfig serializeConfig = SerializeConfig.globalInstance;
-        serializeConfig.put(BigInteger.class, ToStringSerializer.instance);
-        serializeConfig.put(Long.class, ToStringSerializer.instance);
-        serializeConfig.put(Long.TYPE, ToStringSerializer.instance);
+//        serializeConfig.put(BigInteger.class, ToStringSerializer.instance);
+//        serializeConfig.put(Long.class, ToStringSerializer.instance);
+//        serializeConfig.put(Long.TYPE, ToStringSerializer.instance);
 //        serializeConfig.put(LocalDateTime.class, ToDateSerializer.instance);
 //        serializeConfig.put(LocalDate.class, ToDateSerializer.instance);
 //        serializeConfig.put(Date.class, ToDateSerializer.instance);
