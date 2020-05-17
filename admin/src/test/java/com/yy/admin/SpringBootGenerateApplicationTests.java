@@ -35,7 +35,7 @@ public class SpringBootGenerateApplicationTests {
         //项目路径
         String projectPath = System.getProperty("user.dir");
         //要生成的表名
-        String[] tables = {"role"};
+        String[] tables = {"menu","admin"};
         //table前缀
         String tablePrefix = "";
         String basePackage = "com.yy.admin";
@@ -48,7 +48,7 @@ public class SpringBootGenerateApplicationTests {
                 .setPassword(password));
         generator.setGlobalConfig(new GlobalConfig()
                 .setOutputDir(projectPath + "/src/main/java")
-                .setFileOverride(false)
+                .setFileOverride(true)
                 .setSwagger2(true)
                 .setKotlin(false)
                 .setActiveRecord(true)

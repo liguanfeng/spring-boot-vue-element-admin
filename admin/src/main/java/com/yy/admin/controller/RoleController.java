@@ -21,8 +21,6 @@ public class RoleController {
 
     @RequestMapping("/list")
     public Result list(ServletRequest request, Page page, String name) {
-        System.out.println(request.getParameter("size"));
-        System.out.println(request.getParameter("current"));
         roleService.getList(page, name);
         return new Result(page);
     }

@@ -18,7 +18,7 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author liguanfeng
- * @since 2020-05-09
+ * @since 2020-05-17
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
@@ -33,11 +33,23 @@ public class Admin extends Model<Admin> {
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
+    @ApiModelProperty(value = "真实姓名")
+    private String realName;
+
     @ApiModelProperty(value = "登录名称")
     private String name;
 
     @ApiModelProperty(value = "登录密码")
     private String password;
+
+    @ApiModelProperty(value = "角色id")
+    private Integer roleId;
+
+    @ApiModelProperty(value = "是否启用")
+    private Boolean isEnable;
+
+    @ApiModelProperty(value = "是否超级管理员")
+    private Boolean isMaster;
 
     @ApiModelProperty(value = "创建时间")
     private LocalDateTime createTime;

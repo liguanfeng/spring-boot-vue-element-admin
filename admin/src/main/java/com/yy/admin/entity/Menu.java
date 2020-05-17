@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import com.baomidou.mybatisplus.annotation.TableId;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -20,13 +21,13 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author liguanfeng
- * @since 2020-05-09
+ * @since 2020-05-17
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @TableName("menu")
-@ApiModel(value="Menu对象", description="菜单表")
+@ApiModel(value = "Menu对象", description = "菜单表")
 public class Menu extends Model<Menu> {
 
     private static final long serialVersionUID = 1L;
@@ -47,26 +48,26 @@ public class Menu extends Model<Menu> {
     @ApiModelProperty(value = "icon")
     private String icon;
 
-    @ApiModelProperty(value = "父级id")
-    private Integer parentId;
-
     @ApiModelProperty(value = "组件路径")
     private String component;
 
     @ApiModelProperty(value = "是否隐藏: 0-不隐藏 1-隐藏")
     private Boolean hidden;
 
-    @ApiModelProperty(value = "API接口类型：0-否 1-是")
-    private Boolean api;
-
     @ApiModelProperty(value = "重定向地址")
     private String redirect;
+
+    @ApiModelProperty(value = "父级id")
+    private Integer parentId;
 
     @ApiModelProperty(value = "菜单类型: 0-大后台")
     private Integer type;
 
-    @ApiModelProperty(value = "子菜单")
+    @ApiModelProperty(value = "API接口类型：0-否 1-是")
+    private Boolean isApi;
+
     @TableField(exist = false)
+    @ApiModelProperty(value = "children,子菜单")
     List<Menu> children;
 
 

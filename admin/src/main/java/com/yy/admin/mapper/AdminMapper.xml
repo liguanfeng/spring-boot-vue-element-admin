@@ -5,14 +5,30 @@
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.yy.admin.entity.Admin">
         <id column="id" property="id" />
+        <result column="realname" property="realname" />
         <result column="name" property="name" />
         <result column="password" property="password" />
+        <result column="roleId" property="roleId" />
+        <result column="isEnable" property="isEnable" />
+        <result column="isMaster" property="isMaster" />
         <result column="createTime" property="createTime" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, name, password, createTime
+        id, realname, name, password, roleId, isEnable, isMaster, createTime
     </sql>
+    <select id="getAdminList" resultType="com.yy.admin.vo.AdminVo">
+
+        select
+            a.*,r.name as roleName
+        from admin a
+        left join role r on r.id = a.roleId
+        <where>
+            <if test="name != null and name != '' ">
+                and ( a.name like concat('%',#{name},'%') or a.realName like concat('%',#{name},'%')  )
+            </if>
+        </where>
+    </select>
 
 </mapper>

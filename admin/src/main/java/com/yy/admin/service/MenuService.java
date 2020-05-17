@@ -119,9 +119,9 @@ public class MenuService {
     public void save(Menu menu) {
         Assert.hasText(menu.getTitle(), "菜单名称不能为空");
         Assert.hasText(menu.getPath(), "菜单路径不能为空");
-        Assert.notNull(menu.getApi(), "请选择创建菜单或权限");
+        Assert.notNull(menu.getIsApi(), "请选择创建菜单或权限");
         menu.setHidden(menu.getHidden() == null ? false : menu.getHidden());
-        if (menu.getApi()) {
+        if (menu.getIsApi()) {
             Assert.notNull(menu.getParentId(), "权限必须选择上级菜单");
         }
         if (menu.getId() == null) {
