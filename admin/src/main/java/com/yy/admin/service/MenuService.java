@@ -3,16 +3,16 @@ package com.yy.admin.service;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.yy.admin.dao.MenuMapper;
+import com.yy.admin.dao.RoleMapper;
+import com.yy.admin.entity.Admin;
 import com.yy.admin.entity.Menu;
+import com.yy.admin.entity.Role;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -20,14 +20,28 @@ public class MenuService {
 
     @Resource
     private MenuMapper menuMapper;
+    @Resource
+    private RoleMapper roleMapper;
 
     /**
      * 获取管理员菜单列表
      *
      * @return
      */
-    public List<Menu> getAdminMenuList() {
-        List<Menu> menus = menuMapper.selectList(new QueryWrapper<>());
+    public List<Menu> getAdminMenuList(Admin admin) {
+        Role role = roleMapper.selectById(admin.getRoleId());
+        List<Menu> menus = new ArrayList<>(0);
+        if (role == null || StringUtils.isEmpty(role.getMenuIds())) {
+            if(admin.getIsMaster()){
+                menus = menuMapper.selectList(new QueryWrapper<>());
+            }else{
+                return menus;
+            }
+        } else {
+           menus = menuMapper.selectList(new QueryWrapper<Menu>()
+                    .in(!admin.getIsMaster(), "id", role.getMenuIds().split(",")));
+
+        }
         return getChildren(null, menus);
     }
 

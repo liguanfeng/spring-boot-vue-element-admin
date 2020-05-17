@@ -2,15 +2,13 @@ package com.yy.admin.config;
 
 import com.alibaba.fastjson.serializer.SerializeConfig;
 import com.alibaba.fastjson.serializer.SerializerFeature;
-import com.alibaba.fastjson.serializer.ToStringSerializer;
 import com.alibaba.fastjson.support.config.FastJsonConfig;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.yy.admin.interceptor.CommonInterceptor;
+import com.yy.admin.interceptor.LoginInterceptor;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.MethodParameter;
 import org.springframework.core.task.TaskExecutor;
 import org.springframework.format.Formatter;
 import org.springframework.http.MediaType;
@@ -18,16 +16,12 @@ import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.lang.Nullable;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
-import org.springframework.web.bind.support.WebDataBinderFactory;
-import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
-import org.springframework.web.method.support.ModelAndViewContainer;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -45,10 +39,14 @@ import java.util.Objects;
 public class WebConfig implements WebMvcConfigurer {
 
     @Bean
-    CommonInterceptor commonInterceptor() {
+    public CommonInterceptor commonInterceptor() {
         return new CommonInterceptor();
     }
 
+    @Bean
+    public LoginInterceptor authorizationInterceptor() {
+        return new LoginInterceptor();
+    }
 
     @Bean
     public TaskExecutor taskExecutor() {
@@ -68,7 +66,7 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(commonInterceptor()).addPathPatterns("/**");
-//        registry.addInterceptor(authorizationInterceptor()).addPathPatterns("/api/**");
+        registry.addInterceptor(authorizationInterceptor()).addPathPatterns("/api/**");
     }
 
     @Override

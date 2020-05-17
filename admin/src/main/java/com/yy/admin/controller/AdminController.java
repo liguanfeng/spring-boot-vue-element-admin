@@ -1,12 +1,14 @@
 package com.yy.admin.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.yy.admin.annotations.Authorization;
 import com.yy.admin.entity.Admin;
 import com.yy.admin.service.AdminService;
 import com.yy.admin.service.MenuService;
 import com.yy.admin.vo.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,6 +30,7 @@ public class AdminController {
      * @return
      */
     @PostMapping("/login")
+    @Authorization(checkPrivilege = false)
     public Result login(String name, String password) {
         return new Result(adminService.login(name, password));
     }
@@ -37,6 +40,7 @@ public class AdminController {
      *
      * @return
      */
+    @Authorization(checkPrivilege = false)
     @PostMapping("/logout")
     public Result logout() {
         return new Result();
@@ -49,8 +53,9 @@ public class AdminController {
      * @return
      */
     @RequestMapping("/menus")
-    public Result menus() {
-        return new Result(menuService.getAdminMenuList());
+    @Authorization(checkPrivilege = false)
+    public Result menus(@RequestAttribute Admin admin) {
+        return new Result(menuService.getAdminMenuList(admin));
     }
 
     @RequestMapping("/list")

@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.yy.admin.dao.AdminMapper;
 import com.yy.admin.entity.Admin;
+import com.yy.admin.util.JwtUtil;
 import com.yy.admin.vo.AdminVo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +41,8 @@ public class AdminService {
         Assert.isTrue(admin.getIsEnable(), "账号已经被锁定,请联系管理员");
         AdminVo adminVo = new AdminVo();
         BeanUtils.copyProperties(admin, adminVo);
-        String token = UUID.randomUUID().toString().replace("-", "");
+//        String token = UUID.randomUUID().toString().replace("-", "");
+        String token = JwtUtil.createToken(admin);
         adminVo.setToken(token);
         return adminVo;
     }

@@ -59,7 +59,7 @@ public class CommonErrorController extends BasicErrorController {
         }
         body.put("message", message);
         body.put("code", code);
-        return new ResponseEntity<>(body, status);
+        return new ResponseEntity<>(body, HttpStatus.OK);
     }
 
 }
