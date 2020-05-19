@@ -9,6 +9,7 @@ import com.yy.admin.entity.Menu;
 import com.yy.admin.entity.Role;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
+import org.springframework.util.PatternMatchUtils;
 import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
@@ -75,7 +76,7 @@ public class MenuService {
         if (content == null) {
             return false;
         }
-        return content.contains(title);
+        return content.contains(title) || PatternMatchUtils.simpleMatch(title,content);
     }
 
     public void getParentIds(List<Menu> menus, List<Integer> ids, Set<Integer> matchIds) {
