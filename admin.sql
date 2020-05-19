@@ -11,7 +11,7 @@
  Target Server Version : 80020
  File Encoding         : 65001
 
- Date: 17/05/2020 23:31:05
+ Date: 19/05/2020 20:38:08
 */
 
 SET NAMES utf8mb4;
@@ -38,7 +38,7 @@ CREATE TABLE `admin` (
 -- ----------------------------
 BEGIN;
 INSERT INTO `admin` VALUES (1, 'lgf', 'admin', '21232f297a57a5a743894a0e4a801fc3', NULL, 1, 1, '2020-05-09 15:27:58');
-INSERT INTO `admin` VALUES (2, '测试-01', 'test', 'c4ca4238a0b923820dcc509a6f75849b', 5, 1, 0, '2020-05-17 10:29:10');
+INSERT INTO `admin` VALUES (2, '测试-01', 'test', 'e10adc3949ba59abbe56e057f20f883e', 5, 1, 0, '2020-05-17 10:29:10');
 COMMIT;
 
 -- ----------------------------
@@ -77,7 +77,7 @@ CREATE TABLE `menu` (
   `type` int DEFAULT '0' COMMENT '菜单类型: 0-大后台',
   `isApi` tinyint(1) DEFAULT '0' COMMENT 'API接口类型：0-否 1-是',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin ROW_FORMAT=DYNAMIC COMMENT='菜单表';
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin ROW_FORMAT=DYNAMIC COMMENT='菜单表';
 
 -- ----------------------------
 -- Records of menu
@@ -90,6 +90,7 @@ INSERT INTO `menu` VALUES (15, 'admin.*', '全部权限', '/api/admin/**', NULL,
 INSERT INTO `menu` VALUES (17, 'RoleList', '角色管理', '/role', NULL, '/admin/RoleList', 0, NULL, 1, 0, 0);
 INSERT INTO `menu` VALUES (19, 'role.list', '列表', '/api/role/list', NULL, NULL, 0, NULL, 17, 0, 1);
 INSERT INTO `menu` VALUES (20, 'menu.list', '列表', '/api/menu/list', NULL, NULL, 0, NULL, 2, 0, 1);
+INSERT INTO `menu` VALUES (24, 'menu.*', '全部权限', '/api/menu/**', NULL, '', 0, '', 2, 0, 1);
 COMMIT;
 
 -- ----------------------------
