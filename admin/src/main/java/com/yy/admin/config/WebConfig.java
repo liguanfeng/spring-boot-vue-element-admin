@@ -71,12 +71,12 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        //registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
+//        registry.addResourceHandler("/html/**").addResourceLocations("classpath:/html");
     }
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/").setViewName("static/html/index.html");
+        registry.addViewController("/").setViewName("static/index.html");
     }
 
     @Override
