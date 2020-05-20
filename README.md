@@ -1,8 +1,8 @@
 # spring-boot-vue-element-admin
 
 #### 介绍
-spring-boot-vue-element-admin 是使用 vue-element-admin 使用后台java语言实现
-
+-  **spring-boot-vue-element-admin 是使用 vue-element-admin 使用后台java语言实现** 
+-  **支持基本账号登录、菜单管理、角色管理、按钮级别API权限控制** 
 #### 软件架构
 1.spring-boot、mybatis、mysql
 
