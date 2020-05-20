@@ -1,23 +1,23 @@
-# yy
+# spring-boot-vue-element-admin
 
 #### 介绍
-{**以下是码云平台说明，您可以替换此简介**
-码云是 OSCHINA 推出的基于 Git 的代码托管平台（同时支持 SVN）。专为开发者提供稳定、高效、安全的云端软件开发协作平台
-无论是个人、团队、或是企业，都能够用码云实现代码托管、项目管理、协作开发。企业项目请看 [https://gitee.com/enterprises](https://gitee.com/enterprises)}
+spring-boot-vue-element-admin 是使用 vue-element-admin 使用后台java语言实现
 
 #### 软件架构
-软件架构说明
-
+1.spring-boot、mybatis、mysql
 
 #### 安装教程
 
-1. 创建mysql，testdb ，执行 admin.sql 导入数据
+1. 需要下载MySQL数据库服务，创建 testdb 数据库
+2. 执行 admin.sql 
+
 
 #### 使用说明
+1.  admin 模块支持基本 后台管理员登录、角色管理、菜单管理 支持按钮级别权限控制 支持通配符配置URL权限
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+#### 用户账号登录
+1. 数据脚本默认有两个用户，admin，test (admin拥有所有操作权限)
+![登录](https://images.gitee.com/uploads/images/2020/0520/093116_28977fb3_4764922.png "屏幕截图.png")
 
 #### 参与贡献
 
@@ -27,11 +27,3 @@
 4.  新建 Pull Request
 
 
-#### 码云特技
-
-1.  使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2.  码云官方博客 [blog.gitee.com](https://blog.gitee.com)
-3.  你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解码云上的优秀开源项目
-4.  [GVP](https://gitee.com/gvp) 全称是码云最有价值开源项目，是码云综合评定出的优秀开源项目
-5.  码云官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6.  码云封面人物是一档用来展示码云会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
