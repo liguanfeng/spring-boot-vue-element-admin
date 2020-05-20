@@ -26,7 +26,17 @@ spring-boot-vue-element-admin 是使用 vue-element-admin 使用后台java语言
 #### 用户账号登录
 1. 数据脚本默认有两个用户，admin，test (admin拥有所有操作权限)
 ![登录](https://images.gitee.com/uploads/images/2020/0520/093116_28977fb3_4764922.png "屏幕截图.png")
-
+2. 账号管理
+![输入图片说明](https://images.gitee.com/uploads/images/2020/0520/094446_aae47d00_4764922.png "屏幕截图.png")
+3. 菜单管理
+![菜单列表](https://images.gitee.com/uploads/images/2020/0520/094636_478421a4_4764922.png "屏幕截图.png")
+- 自动识别组件
+![新增菜单或权限](https://images.gitee.com/uploads/images/2020/0520/094709_838811a1_4764922.png "屏幕截图.png")
+- 自动识别接口权限URL
+![输入图片说明](https://images.gitee.com/uploads/images/2020/0520/095048_debe8ab5_4764922.png "屏幕截图.png")
+4. 角色管理
+![输入图片说明](https://images.gitee.com/uploads/images/2020/0520/095322_1d9fb830_4764922.png "屏幕截图.png")
+![输入图片说明](https://images.gitee.com/uploads/images/2020/0520/095354_931e9fe9_4764922.png "屏幕截图.png")
 #### 参与贡献
 
 1.  Fork 本仓库
