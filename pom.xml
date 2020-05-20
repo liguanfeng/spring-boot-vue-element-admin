@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.yy</groupId>
-    <artifactId>yy</artifactId>
+    <artifactId>spring-boot-vue-element-admin</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>yy</name>
+    <name>spring-boot-vue-element-admin</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
