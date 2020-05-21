@@ -51,7 +51,7 @@ CREATE TABLE `customer` (
   `password` varchar(255) DEFAULT NULL COMMENT '密码',
   `createTime` datetime DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 -- ----------------------------
 -- Records of customer
@@ -100,10 +100,10 @@ DROP TABLE IF EXISTS `role`;
 CREATE TABLE `role` (
   `id` int NOT NULL AUTO_INCREMENT COMMENT '唯一编号',
   `name` varchar(255) DEFAULT NULL COMMENT '角色名称',
-  `menuIds` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci COMMENT '拥有的菜单与权限',
+  `menuIds` text CHARACTER SET utf8mb4 COLLATE utf8mb4_bin COMMENT '拥有的菜单与权限',
   `createTime` datetime DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 -- ----------------------------
 -- Records of role
