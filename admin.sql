@@ -114,3 +114,7 @@ INSERT INTO `role` VALUES (5, '开发', '0,1,2,20,3,15,17,19', '2020-05-16 23:09
 COMMIT;
 
 SET FOREIGN_KEY_CHECKS = 1;
+
+ALTER TABLE `admin`
+ADD UNIQUE INDEX `idx_name`(`name`) USING BTREE,
+ADD INDEX `idx_createTime`(`createTime`) USING BTREE;
