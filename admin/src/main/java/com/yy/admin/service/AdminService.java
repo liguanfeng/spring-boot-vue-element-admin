@@ -117,6 +117,8 @@ public class AdminService {
             admin.setPassword(null);
             admin.updateById();
         } else {
+            Integer count = adminMapper.selectCount(new QueryWrapper<Admin>().eq("name", admin.getName()));
+            Assert.isTrue(count == 0, "登录账号已经存在");
             Assert.hasText(admin.getPassword(), "密码不能为空");
             admin.setIsMaster(false);
             admin.setCreateTime(LocalDateTime.now());

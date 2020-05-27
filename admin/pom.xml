@@ -110,6 +110,7 @@
     </dependencies>
 
     <build>
+        <finalName>admin</finalName>
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
