@@ -16,24 +16,26 @@ management:
   endpoint.shutdown.enabled: true
 
 spring:
-#  cache:
-#    type: redis
-#    redis:
-#      time-to-live: 1h
-#  redis:
-#    host: localhost
-#    #    password:
-#    timeout: 5000
-#    port: 6379
-#    jedis:
-#      pool:
-#        max-active: 10000
-#        max-idle: 50
-#        min-idle: 8
+  mvc:
+    static-path-pattern: /static/**
+  #  cache:
+  #    type: redis
+  #    redis:
+  #      time-to-live: 1h
+  #  redis:
+  #    host: localhost
+  #    #    password:
+  #    timeout: 5000
+  #    port: 6379
+  #    jedis:
+  #      pool:
+  #        max-active: 10000
+  #        max-idle: 50
+  #        min-idle: 8
   #数据源 配置
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/testdb?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8&useSSL=false&allowMultiQueries=true
+    url: jdbc:mysql://192.168.31.153:3306/testdb?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8&useSSL=false&allowMultiQueries=true
     username: root
     password: root
     druid:
