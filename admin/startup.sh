@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# docker logs -f --tail=100 admin 查看日志
+
 APPNAME=admin
 VERSION=latest
 PROT=8080:8080
@@ -14,6 +14,5 @@ else
   echo "docker run ${APPNAME}:${VERSION} "
    docker run -p ${PROT}  --name ${APPNAME} app/${APPNAME}:${VERSION}
 fi
-
 
 
