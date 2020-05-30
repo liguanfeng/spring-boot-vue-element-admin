@@ -135,16 +135,16 @@
 
     <!-- 依赖仓库 设置从aliyun仓库下载-->
     <repositories>
-        <!--        <repository>-->
-        <!--            <id>jcenter</id>-->
-        <!--            <url>https://maven.aliyun.com/repository/jcenter</url>-->
-        <!--            <releases>-->
-        <!--                <enabled>true</enabled>-->
-        <!--            </releases>-->
-        <!--            <snapshots>-->
-        <!--                <enabled>true</enabled>-->
-        <!--            </snapshots>-->
-        <!--        </repository>-->
+        <repository>
+            <id>jcenter</id>
+            <url>https://maven.aliyun.com/repository/spring-plugin</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
         <repository>
             <id>alimaven</id>
             <url>https://maven.aliyun.com/repository/public</url>
