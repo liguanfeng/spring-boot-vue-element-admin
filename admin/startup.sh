@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+## docker pull registry.cn-shenzhen.aliyuncs.com/ligf/springboot-vue-admin 阿里云
 APPNAME=admin
 VERSION=latest
 PROT=8080:8080
