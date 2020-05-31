@@ -144,6 +144,8 @@
                             <goal>build</goal>
                         </goals>
                         <configuration>
+                            <!-- 跳过docker build -->
+                            <skip>true</skip>
                             <repository>ligf/${project.artifactId}</repository>
                             <tag>latest</tag>
 <!--                            <tag>${project.version}</tag>-->
